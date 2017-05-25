@@ -1,16 +1,43 @@
+import Root from './Root'
 import Index from './Index'
 import New from './New'
 import Show from './Show'
 import Edit from './Edit'
 
-export default {
-  path: '/configs', component: {
-    template: '<router-view></router-view>'
+export default{
+  path: '/configs',
+  component: Root,
+  meta: {
+    breadcrumb: 'config',
   },
   children: [
-    { path: '/', component: Index},
-    { path: 'new', component: New},
-    { path: ':id', component: Show},
-    { path: ':id/edit', component: Edit},
+    {
+      path: '/',
+      component: Index,
+      meta: {
+        breadcrumb: 'list',
+      },
+    },
+    {
+      path: 'new',
+      component: New,
+      meta: {
+        breadcrumb: 'new',
+      },
+    },
+    {
+      path: ':id',
+      component: Show,
+      meta: {
+        breadcrumb: 'show',
+      },
+    },
+    {
+      path: ':id/edit',
+      component: Edit,
+      meta: {
+        breadcrumb: 'edit',
+      },
+    },
   ],
 }
