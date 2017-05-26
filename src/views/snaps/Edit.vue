@@ -1,35 +1,35 @@
 <template>
   <div>
-    <h1>config edit</h1>
+    <h1>snap edit</h1>
     <form @submit.prevent='submit'>
       <div>
         <label>name</label>
-        <input type='text' v-model='config.name'>
+        <input type='text' v-model='snap.name'>
       </div>
       <div>
         <button type='submit'>submit</button>
       </div>
     </form>
-    <router-link to='/configs'>back</router-link>
+    <router-link to='/snaps'>back</router-link>
   </div>
 </template>
 
 <script>
-import Config from 'models/Config'
+import Snap from 'models/Snap'
 
 export default{
   data(){
     return {
-      config: {}
+      snap: {}
     }
   },
   async beforeCreate(){
     const _id = this.$route.params.id
-    this.config = await Config.findOne({_id})
+    this.snap = await Snap.findOne({_id})
   },
   methods: {
     async submit(e){
-      await Config.update(this.config)
+      await Snap.update(this.snap)
       this.$router.push('./')
     },
   },

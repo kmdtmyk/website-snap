@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>config index</h1>
+    <h1>snap index</h1>
     <table>
       <thead>
         <tr>
@@ -9,39 +9,39 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for='(config, index) in configs' :key='index'>
-          <td>{{config.name}}{{config.delete}}</td>
+        <tr v-for='(snap, index) in snaps' :key='index'>
+          <td>{{snap.name}}{{snap.delete}}</td>
           <td>
-            <router-link :to='`/configs/${config._id}`'>show</router-link>
-            <router-link :to='`/configs/${config._id}/edit`'>edit</router-link>
+            <router-link :to='`/snaps/${snap._id}`'>show</router-link>
+            <router-link :to='`/snaps/${snap._id}/edit`'>edit</router-link>
             <a href='javascript:void(0)' @click='remove(index)'>delete</a>
           </td>
         </tr>
       </tbody>
     </table>
-    <router-link to='/configs/new'>new config</router-link>
+    <router-link to='/snaps/new'>new snap</router-link>
   </div>
 </template>
 
 <script>
-import Config from 'models/Config'
+import Snap from 'models/Snap'
 
 export default{
   data(){
     return {
-      configs: []
+      snaps: []
     }
   },
   async beforeCreate(){
-    this.configs = await Config.find()
+    this.snaps = await Snap.find()
   },
   methods: {
     async remove(index){
       if(confirm('Are you sure?') === false){
         return
       }
-      await Config.remove(this.configs[index])
-      this.configs.splice(index, 1)
+      await Snap.remove(this.snaps[index])
+      this.snaps.splice(index, 1)
     },
   },
 }

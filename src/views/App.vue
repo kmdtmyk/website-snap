@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>home</h1>
-    <router-link to='/configs'>configs</router-link>
+    <router-link to='/snaps'>snaps</router-link>
   </div>
 </template>
 
