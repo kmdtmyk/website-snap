@@ -2,7 +2,6 @@
   <div>
     <h1>snap new</h1>
     <snap-form v-model='snap' @submit='submit'></snap-form>
-    <router-link to='/snaps'>back</router-link>
   </div>
 </template>
 

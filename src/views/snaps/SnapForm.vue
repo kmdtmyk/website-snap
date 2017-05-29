@@ -1,13 +1,14 @@
 <template>
-  <form @submit.prevent='submit'>
-    <div>
+  <form-tag @submit.prevent='submit'>
+    <field-tag>
       <label>name</label>
-      <input type='text' v-model='snap.name'>
-    </div>
+      <text-field type='text' v-model='snap.name'/>
+    </field-tag>
     <div>
-      <button type='submit'>submit</button>
+      <submit-button>Register</submit-button>
+      <button-link :to='{name: "snaps"}'>Cancel</button-link>
     </div>
-  </form>
+  </form-tag>
 </template>
 
 <script>

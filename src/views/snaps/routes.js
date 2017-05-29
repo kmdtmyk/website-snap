@@ -14,7 +14,7 @@ export default{
     {
       path: '/',
       component: Index,
-
+      name: 'snaps'
     },
     {
       path: 'new',
