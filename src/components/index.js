@@ -8,6 +8,7 @@ import FormTag from './FormTag'
 // import ProgressBar from './ProgressBar'
 // import RadioButton from './RadioButton'
 // import StickyTable from './StickyTable'
+import SubmitButton from './SubmitButton'
 import TableTag from './TableTag'
 import TextField from './TextField'
 
@@ -22,6 +23,7 @@ export default{
   // ProgressBar,
   // RadioButton,
   // StickyTable,
+  SubmitButton,
   TableTag,
   TextField,
 }
