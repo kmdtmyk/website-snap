@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>snap index</h1>
-    <table>
+    <table-tag>
       <thead>
         <tr>
           <th>name</th>
@@ -18,7 +18,7 @@
           </td>
         </tr>
       </tbody>
-    </table>
+    </table-tag>
     <router-link to='/snaps/new'>new snap</router-link>
   </div>
 </template>
