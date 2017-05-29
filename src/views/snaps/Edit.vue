@@ -1,23 +1,19 @@
 <template>
   <div>
     <h1>snap edit</h1>
-    <form @submit.prevent='submit'>
-      <div>
-        <label>name</label>
-        <input type='text' v-model='snap.name'>
-      </div>
-      <div>
-        <button type='submit'>submit</button>
-      </div>
-    </form>
+    <snap-form v-model='snap' @submit='submit'></snap-form>
     <router-link to='/snaps'>back</router-link>
   </div>
 </template>
 
 <script>
 import Snap from 'models/Snap'
+import SnapForm from './SnapForm'
 
 export default{
+  components: {
+    SnapForm
+  },
   data(){
     return {
       snap: {}
