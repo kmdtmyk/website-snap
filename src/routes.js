@@ -1,9 +1,9 @@
 import App from './views/App'
-import configs from './views/configs/routes'
+import snaps from './views/snaps/routes'
 
 export default [
   {
     path: '/', component: App,
   },
-  configs,
+  snaps,
 ]
