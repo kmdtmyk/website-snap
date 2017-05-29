@@ -14,9 +14,7 @@ export default{
     {
       path: '/',
       component: Index,
-      meta: {
-        breadcrumb: 'list',
-      },
+
     },
     {
       path: 'new',
