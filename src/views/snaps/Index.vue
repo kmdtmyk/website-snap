@@ -12,14 +12,14 @@
         <tr v-for='(snap, index) in snaps' :key='index'>
           <td>{{snap.name}}{{snap.delete}}</td>
           <td>
-            <router-link :to='`/snaps/${snap._id}`'>show</router-link>
-            <router-link :to='`/snaps/${snap._id}/edit`'>edit</router-link>
+            <link-tag :to='`/snaps/${snap._id}`'>show</link-tag>
+            <link-tag :to='`/snaps/${snap._id}/edit`'>edit</link-tag>
             <a href='javascript:void(0)' @click='remove(index)'>delete</a>
           </td>
         </tr>
       </tbody>
     </table-tag>
-    <router-link to='/snaps/new'>new snap</router-link>
+    <link-tag to='/snaps/new'>new snap</link-tag>
   </div>
 </template>
 

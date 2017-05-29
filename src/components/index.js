@@ -5,6 +5,7 @@ import ButtonLink from './ButtonLink'
 // import DirectorySelector from './DirectorySelector'
 import FieldTag from './FieldTag'
 import FormTag from './FormTag'
+import LinkTag from './LinkTag'
 // import IntField from './IntField'
 // import ProgressBar from './ProgressBar'
 // import RadioButton from './RadioButton'
@@ -21,6 +22,7 @@ export default{
   // DirectorySelector,
   FieldTag,
   FormTag,
+  LinkTag,
   // IntField,
   // ProgressBar,
   // RadioButton,

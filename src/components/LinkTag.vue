@@ -1,7 +1,7 @@
 <template>
-  <link-tag class='ui button' :to='to'>
+  <router-link :to='to' exact>
     <slot></slot>
-  </link-tag>
+  </router-link>
 </template>
 
 <script>
