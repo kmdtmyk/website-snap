@@ -1,5 +1,5 @@
 import ButtonLink from './ButtonLink'
-// import ButtonTag from './ButtonTag'
+import ButtonTag from './ButtonTag'
 // import CheckBox from './CheckBox'
 // import DateField from './DateField'
 // import DirectorySelector from './DirectorySelector'
@@ -16,7 +16,7 @@ import TextField from './TextField'
 
 export default{
   ButtonLink,
-  // ButtonTag,
+  ButtonTag,
   // CheckBox,
   // DateField,
   // DirectorySelector,

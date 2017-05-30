@@ -4,15 +4,22 @@
       <label>name</label>
       <text-field type='text' v-model='snap.name'/>
     </field-tag>
+    <page-list v-model='snap.pages'></page-list>
     <div>
       <submit-button>Register</submit-button>
       <button-link :to='{name: "snaps"}'>Cancel</button-link>
     </div>
+    <pre>{{snap}}</pre>
   </form-tag>
 </template>
 
 <script>
+import PageList from './PageList'
+
 export default{
+  components: {
+    PageList,
+  },
   model: {
     prop: 'snap'
   },

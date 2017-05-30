@@ -7,7 +7,7 @@
 
 <script>
 import Snap from 'models/Snap'
-import SnapForm from './SnapForm'
+import SnapForm from './Form'
 
 export default{
   components: {
@@ -15,7 +15,10 @@ export default{
   },
   data(){
     return {
-      snap: {}
+      snap: {
+        name: '',
+        pages: [],
+      }
     }
   },
   async beforeCreate(){
