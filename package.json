@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "npm run webpack & npm run electron .",
     "webpack": "webpack -w",
     "electron": "electron .",
     "build": "electron-packager . WebsiteSnap --platform=win32 --arch=x64 --overwrite --electron-version=1.6.2 --asar=true --out=build",
