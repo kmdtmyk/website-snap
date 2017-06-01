@@ -14,11 +14,9 @@ export default{
     SnapForm
   },
   data(){
+    const snap = Snap.new()
     return {
-      snap: {
-        name: '',
-        pages: [],
-      }
+      snap
     }
   },
   methods: {

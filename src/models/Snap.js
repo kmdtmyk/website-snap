@@ -9,6 +9,13 @@ const db = new Datastore({
 
 export default class{
 
+  static new(){
+    return {
+      name: '',
+      pages: [],
+    }
+  }
+
   static insert(doc){
     return new Promise((resolve, reject) => {
       db.insert(doc, (error, newDoc) => {

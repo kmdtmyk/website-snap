@@ -14,16 +14,17 @@ export default{
     SnapForm
   },
   data(){
+    const snap = Snap.new()
     return {
-      snap: {
-        name: '',
-        pages: [],
-      }
+      snap
     }
   },
-  async beforeCreate(){
-    const _id = this.$route.params.id
-    this.snap = await Snap.findOne({_id})
+  async beforeRouteEnter(route, redirect, next){
+    const _id = route.params.id
+    const snap = await Snap.findOne({_id})
+    next((vm) => {
+      vm.snap = snap
+    })
   },
   methods: {
     async submit(e){
