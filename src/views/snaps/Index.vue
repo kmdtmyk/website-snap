@@ -32,8 +32,11 @@ export default{
       snaps: []
     }
   },
-  async beforeCreate(){
-    this.snaps = await Snap.find()
+  async beforeRouteEnter(route, redirect, next){
+    const snap = await Snap.find()
+    next((vm) => {
+      vm.snaps = snap
+    })
   },
   methods: {
     async remove(index){

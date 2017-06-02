@@ -19,10 +19,13 @@ export default{
       snap: {}
     }
   },
-  async beforeCreate(){
-    const _id = this.$route.params.id
-    this.snap = await Snap.findOne({_id})
-  }
+  async beforeRouteEnter(route, redirect, next){
+    const _id = route.params.id
+    const snap = await Snap.findOne({_id})
+    next((vm) => {
+      vm.snap = snap
+    })
+  },
 }
 </script>
 
