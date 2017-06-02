@@ -16,8 +16,12 @@
           <text-field v-model='record.url' @input='input(record, index)'></text-field>
         </td>
         <td>
-          <button-tag v-if='index < records.length - 1' @click='duplicate(index)'>duplicate</button-tag>
-          <button-tag v-if='index < records.length - 1' @click='remove(index)'>remove</button-tag>
+          <button-tag v-if='index < records.length - 1' @click='duplicate(index)'>
+            <icon-tag icon='clone'></icon-tag>
+          </button-tag>
+          <button-tag v-if='index < records.length - 1' @click='remove(index)'>
+            <icon-tag icon='trash'></icon-tag>
+          </button-tag>
         </td>
       </tr>
     </tbody>
