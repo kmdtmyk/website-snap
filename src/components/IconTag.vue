@@ -7,7 +7,8 @@
 <script>
 export default {
   props: [
-    'icon'
+    'icon',
+    'spin',
   ]
 }
 </script>

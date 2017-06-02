@@ -24,6 +24,7 @@
     "electron-window-state": "^4.1.1",
     "moment": "^2.18.1",
     "nedb": "^1.8.0",
+    "phantom": "^4.0.3",
     "vue": "^2.3.2",
     "vue-loader": "^11.3.4",
     "vue-router": "^2.4.0",
