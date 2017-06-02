@@ -1,12 +1,28 @@
 <template>
   <div>
-    <h1>snap show</h1>
+    <h1>{{snap.name}}</h1>
+    <table-tag>
+      <thead>
+        <tr>
+          <th>name</th>
+          <th>url</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for='(snap, index) in snap.pages' :key='index'>
+          <td>
+            {{snap.name}}
+          </td>
+          <td>
+            {{snap.url}}
+          </td>
+        </tr>
+      </tbody>
+    </table-tag>
     <div>
-      <label>name</label>
-      <span>{{snap.name}}</span>
+      <router-link :to='`/snaps/${snap._id}/edit`'>edit</router-link>
+      <router-link to='/snaps'>back</router-link>
     </div>
-    <router-link :to='`/snaps/${snap._id}/edit`'>edit</router-link>
-    <router-link to='/snaps'>back</router-link>
   </div>
 </template>
 
