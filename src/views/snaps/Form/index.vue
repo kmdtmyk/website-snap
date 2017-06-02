@@ -9,7 +9,6 @@
       <submit-button>Register</submit-button>
       <button-link :to='{name: "snaps"}'>Cancel</button-link>
     </div>
-    <pre>{{snap}}</pre>
   </form-tag>
 </template>
 
