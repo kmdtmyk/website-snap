@@ -27,7 +27,11 @@
 
     <div class='ui segment capture-log'>
       <div v-for='(captureLog, index) in captureLogs' :key='index'>
-        {{captureLog}}
+        <span :class='captureLog.status'>[{{captureLog.status}}]</span>
+        <span>{{captureLog.url}}</span>
+      </div>
+      <div v-if='finished'>
+        finished.
       </div>
     </div>
 
@@ -50,6 +54,7 @@ export default{
       snap: {},
       captureLogs: [],
       running: false,
+      finished: false,
     }
   },
   async beforeRouteEnter(route, redirect, next){
@@ -62,17 +67,24 @@ export default{
   methods: {
     async run(){
       this.running = true
+      this.finished = false
       const pages = this.snap.pages
       this.captureLogs = []
       for(let i = 0; i < pages.length; i++){
         const {url} = pages[i]
-        this.captureLogs.push(`[wait] ${url}`)
+        this.captureLogs.push({
+          status: 'wait',
+          url,
+        })
         const {status, filepath} = await screenCapture.take(url)
         this.captureLogs.pop()
-        this.captureLogs.push(`[${status}] ${url}`)
+        this.captureLogs.push({
+          status,
+          url,
+        })
       }
-      this.captureLogs.push('finished.')
       this.running = false
+      this.finished = true
     },
   },
 }
@@ -82,5 +94,13 @@ export default{
 .capture-log{
   height: 50vh;
   overflow-y: scroll;
+}
+
+.success{
+  color: green;
+}
+
+.wait{
+  color: blue;
 }
 </style>
