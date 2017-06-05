@@ -86,4 +86,21 @@ export default class{
     })
   }
 
+  static push(query, key, value){
+    return new Promise((resolve, reject) => {
+      const push = {
+        $push: {
+          [key]: value
+        }
+      }
+      db.update(query, push, {}, (error, docs) => {
+        if(error){
+          reject(error)
+        }else{
+          resolve(docs)
+        }
+      })
+    })
+  }
+
 }

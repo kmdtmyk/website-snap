@@ -58,6 +58,7 @@ export default{
   async beforeRouteEnter(route, redirect, next){
     const _id = route.params.id
     const snap = await Snap.findOne({_id})
+    console.log(snap)
     next((vm) => {
       vm.snap = snap
     })
@@ -66,8 +67,14 @@ export default{
     async run(){
       this.running = true
       this.finished = false
+      await this.take()
+      this.running = false
+      this.finished = true
+    },
+    async take(){
       const screenCapture = new ScreenCapture()
       const pages = this.snap.pages
+      const filePaths = []
       this.captureLogs = []
       for(let i = 0; i < pages.length; i++){
         const {url} = pages[i]
@@ -75,16 +82,20 @@ export default{
           status: 'wait',
           url,
         })
-        const {status, filepath} = await screenCapture.take(url)
+        const {status, filePath} = await screenCapture.take(url)
         this.captureLogs.pop()
         this.captureLogs.push({
           status,
           url,
         })
+        filePaths.push(filePath)
       }
-      this.running = false
-      this.finished = true
-    },
+      const log = {
+        filePaths,
+      }
+      const _id = this.$route.params.id
+      await Snap.push({_id}, 'logs', log)
+    }
   },
 }
 </script>
