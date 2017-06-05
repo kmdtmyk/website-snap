@@ -21,7 +21,7 @@ app.on('ready', function(){
 
   // メインウィンドウに表示するURLを指定します
   mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'dist', 'index.html'),
+    pathname: path.join(__dirname, 'index.html'),
     protocol: 'file:',
     slashes: true
   }))

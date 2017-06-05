@@ -1,20 +1,13 @@
 import Datastore from 'nedb'
 
 const db = new Datastore({
-  filename: 'Snap.db',
+  filename: 'SnapLog.db',
   autoload: true,
   onload(){
   },
 })
 
 export default class{
-
-  static new(){
-    return {
-      name: '',
-      pages: [],
-    }
-  }
 
   static insert(doc){
     return new Promise((resolve, reject) => {
@@ -40,31 +33,6 @@ export default class{
         cursor.limit(limit)
       }
       cursor.exec((error, docs) => {
-        if(error){
-          reject(error)
-        }else{
-          resolve(docs)
-        }
-      })
-    })
-  }
-
-  static findOne(query){
-    return new Promise((resolve, reject) => {
-      db.findOne(query, (error, docs) => {
-        if(error){
-          reject(error)
-        }else{
-          resolve(docs)
-        }
-      })
-    })
-  }
-
-  static update(doc){
-    return new Promise((resolve, reject) => {
-      const {_id} = doc
-      db.update({_id}, doc, {}, (error, docs) => {
         if(error){
           reject(error)
         }else{

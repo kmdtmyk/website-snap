@@ -3,6 +3,7 @@ import Index from './Index'
 import New from './New'
 import Show from './Show'
 import Edit from './Edit'
+import Logs from './Logs'
 
 export default{
   path: '/snaps',
@@ -35,6 +36,13 @@ export default{
       component: Edit,
       meta: {
         breadcrumb: 'edit',
+      },
+    },
+    {
+      path: ':id/logs',
+      component: Logs,
+      meta: {
+        breadcrumb: 'logs',
       },
     },
   ],

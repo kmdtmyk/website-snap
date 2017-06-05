@@ -44,6 +44,7 @@
 
 <script>
 import Snap from 'models/Snap'
+import SnapLog from 'models/SnapLog'
 import ScreenCapture from 'lib/ScreenCapture'
 
 export default{
@@ -58,7 +59,6 @@ export default{
   async beforeRouteEnter(route, redirect, next){
     const _id = route.params.id
     const snap = await Snap.findOne({_id})
-    console.log(snap)
     next((vm) => {
       vm.snap = snap
     })
@@ -90,11 +90,15 @@ export default{
         })
         filePaths.push(filePath)
       }
-      const log = {
-        filePaths,
-      }
+      const directory = screenCapture.directory
       const _id = this.$route.params.id
-      await Snap.push({_id}, 'logs', log)
+      const log = {
+        snapId: _id,
+        filePaths,
+        directory,
+      }
+      // await Snap.push({_id}, 'logs', log)
+      await SnapLog.insert(log)
     }
   },
 }

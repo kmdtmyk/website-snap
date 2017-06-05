@@ -14,8 +14,8 @@ export default class{
     const status = await page.open(url)
     const title = await page.property('title')
     const filename = title + '.png'
-    await page.render(path.join(this.directory, filename))
-    const filePath = path.join(global.process.cwd(), filename)
+    const filePath = path.join(this.directory, filename)
+    await page.render(filePath)
     return {status, filePath}
   }
 
