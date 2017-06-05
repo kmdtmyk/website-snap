@@ -46,8 +46,6 @@
 import Snap from 'models/Snap'
 import ScreenCapture from 'lib/ScreenCapture'
 
-const screenCapture = new ScreenCapture()
-
 export default{
   data(){
     return {
@@ -68,6 +66,7 @@ export default{
     async run(){
       this.running = true
       this.finished = false
+      const screenCapture = new ScreenCapture()
       const pages = this.snap.pages
       this.captureLogs = []
       for(let i = 0; i < pages.length; i++){

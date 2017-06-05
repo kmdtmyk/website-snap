@@ -1,16 +1,20 @@
 import path from 'path'
+import moment from 'moment'
 const phantom = global.require('phantom')
 
-const logDirectory = 'screenshot'
-
 export default class{
+
+  constructor(){
+    const now = moment().format('YYYYMMDD_HHmmss')
+    this.directory = path.join('screenshot', now)
+  }
 
   async take(url){
     const page = await this._getPage()
     const status = await page.open(url)
     const title = await page.property('title')
-    const filename = path.join(logDirectory, title + '.png')
-    await page.render(filename)
+    const filename = title + '.png'
+    await page.render(path.join(this.directory, filename))
     const filePath = path.join(global.process.cwd(), filename)
     return {status, filePath}
   }
