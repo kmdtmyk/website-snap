@@ -36,7 +36,7 @@ export default class{
     return new Promise((resolve, reject) => {
       const {skip, limit} = options
       const cursor = db.find(query)
-      cursor.sort({datetime: 1})
+      cursor.sort({start: -1})
       if(skip){
         cursor.skip(skip)
       }
