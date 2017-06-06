@@ -7,12 +7,12 @@
           <a
             class='item'
             :class='{active: index === selectedIndex}'
-            v-for='(log, index) in snapLogs'
+            v-for='(snapHistory, index) in snapHistories'
             :key='index'
             @click='selectLog(index)'>
-            {{log.datetime | datetime}}
+            {{snapHistory.start | datetime}}
             <div class='ui label'>
-              {{log.files.length}}
+              {{snapHistory.files.length}}
             </div>
           </a>
         </div>
@@ -44,16 +44,16 @@ export default{
   data(){
     return {
       snap: {},
-      snapLogs: [],
+      snapHistories: [],
       selectedIndex: 0,
     }
   },
   computed: {
     selectedLog(){
-      if(!this.snapLogs[this.selectedIndex]){
+      if(!this.snapHistories[this.selectedIndex]){
         return {}
       }
-      return this.snapLogs[this.selectedIndex]
+      return this.snapHistories[this.selectedIndex]
     },
     logDirectory(){
       return path.join(config.logDirectory, this.selectedLog.directory)
@@ -65,10 +65,10 @@ export default{
   async beforeRouteEnter(route, redirect, next){
     const _id = route.params.id
     const snap = await Snap.findOne({_id})
-    const snapLogs = await SnapHistory.find({snapId: _id})
+    const snapHistories = await SnapHistory.find({snapId: _id})
     next((vm) => {
       vm.snap = snap
-      vm.snapLogs = snapLogs
+      vm.snapHistories = snapHistories
     })
   },
   methods: {
@@ -78,7 +78,7 @@ export default{
     async remove(index){
       const _id = this.selectedLog._id
       await SnapHistory.remove({_id})
-      this.snapLogs = this.snapLogs.filter((snapLog) => {
+      this.snapHistories = this.snapHistories.filter((snapLog) => {
         return snapLog._id !== _id
       })
     }

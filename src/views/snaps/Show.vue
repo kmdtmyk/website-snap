@@ -26,11 +26,11 @@
     </div>
 
     <div class='ui segment capture-log'>
-      <div v-for='(captureLog, index) in captureLogs' :key='index'>
-        <span :class='captureLog.status'>[{{captureLog.status}}]</span>
-        <span>{{captureLog.url}}</span>
+      <div v-for='(log, index) in snapHistory.logs' :key='index'>
+        <span :class='log.status'>[{{log.status}}]</span>
+        <span>{{log.url}}</span>
       </div>
-      <div v-if='finished'>
+      <div v-if='snapHistory.end'>
         finished.
       </div>
     </div>
@@ -51,55 +51,54 @@ export default{
   data(){
     return {
       snap: {},
-      captureLogs: [],
-      running: false,
-      finished: false,
+      snapHistory: {},
     }
+  },
+  computed: {
+    running(){
+      const {start, end} = this.snapHistory
+      return start !== null && end === null
+    },
   },
   async beforeRouteEnter(route, redirect, next){
     const _id = route.params.id
     const snap = await Snap.findOne({_id})
+    const snapHistory = SnapHistory.new(_id)
     next((vm) => {
       vm.snap = snap
+      vm.snapHistory = snapHistory
     })
   },
   methods: {
     async run(){
-      this.running = true
-      this.finished = false
-      await this.take()
-      this.running = false
-      this.finished = true
+      const snapHistory = SnapHistory.new(this.snap._id)
+      this.snapHistory = snapHistory
+      snapHistory.start = new Date()
+      await this.take(this.snap.pages)
+      snapHistory.end = new Date()
     },
-    async take(){
+    async take(pages){
       const screenCapture = new ScreenCapture()
-      const pages = this.snap.pages
-      const files = []
-      this.captureLogs = []
+      const {snapHistory} = this
+      const {logs, files} = snapHistory
       for(let i = 0; i < pages.length; i++){
         const {url} = pages[i]
-        this.captureLogs.push({
+        logs.push({
           status: 'wait',
           url,
         })
         const {status, success, name} = await screenCapture.take(url)
-        this.captureLogs.pop()
-        this.captureLogs.push({
+        logs.pop()
+        logs.push({
           status,
           url,
         })
-        files.push({name})
+        if(success === true){
+          files.push({name})
+        }
       }
-      const datetime = screenCapture.datetime
-      const directory = screenCapture.directory
-      const _id = this.$route.params.id
-      const log = {
-        snapId: _id,
-        datetime,
-        directory,
-        files,
-      }
-      await SnapHistory.insert(log)
+      snapHistory.directory = screenCapture.directory
+      await SnapHistory.insert(snapHistory)
     }
   },
 }

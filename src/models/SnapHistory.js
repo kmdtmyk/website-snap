@@ -9,6 +9,17 @@ const db = new Datastore({
 
 export default class{
 
+  static new(snapId){
+    return {
+      snapId,
+      logs: [],
+      files: [],
+      start: null,
+      end: null,
+      directory: null,
+    }
+  }
+
   static insert(doc){
     return new Promise((resolve, reject) => {
       db.insert(doc, (error, newDoc) => {
