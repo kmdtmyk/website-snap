@@ -91,6 +91,10 @@ export default{
   width: auto;
 }
 
+.ui.menu .item{
+  padding: 8px;
+}
+
 .log-detail{
   height: 80vh;
 }

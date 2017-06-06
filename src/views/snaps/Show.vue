@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>{{snap.name}}</h1>
-    <table-tag>
+    <table-tag class='striped'>
       <thead>
         <tr>
           <th>name</th>

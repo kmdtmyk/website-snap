@@ -1,5 +1,5 @@
 <template>
-  <table-tag>
+  <table-tag class='striped'>
     <thead>
       <tr>
         <th>name</th>
@@ -58,13 +58,6 @@ export default{
 </script>
 
 <style scoped>
-th{
-  padding: 4px 8px !important;
-}
-td, input{
-  padding: 4px !important;
-}
-
 button{
   padding: 6px !important;
   width: 3em;

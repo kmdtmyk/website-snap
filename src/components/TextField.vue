@@ -27,4 +27,7 @@ export default{
 </script>
 
 <style scoped>
+input{
+  padding: 4px !important;
+}
 </style>
