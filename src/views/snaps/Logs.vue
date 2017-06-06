@@ -10,7 +10,7 @@
             v-for='(log, index) in snapLogs'
             :key='index'
             @click='selectLog(index)'>
-            {{log.directory}}
+            {{log.datetime | datetime}}
             <div class='ui label'>
               {{log.filePaths.length}}
             </div>

@@ -90,14 +90,15 @@ export default{
         })
         filePaths.push(filePath)
       }
+      const datetime = screenCapture.datetime
       const directory = screenCapture.directory
       const _id = this.$route.params.id
       const log = {
         snapId: _id,
-        filePaths,
+        datetime,
         directory,
+        filePaths,
       }
-      // await Snap.push({_id}, 'logs', log)
       await SnapLog.insert(log)
     }
   },

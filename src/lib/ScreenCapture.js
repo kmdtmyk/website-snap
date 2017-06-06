@@ -5,7 +5,8 @@ const phantom = global.require('phantom')
 export default class{
 
   constructor(){
-    const now = moment().format('YYYYMMDD_HHmmss')
+    this.datetime = new Date()
+    const now = moment(this.datetime).format('YYYYMMDD_HHmmss')
     this.directory = path.join('screenshot', now)
   }
 
