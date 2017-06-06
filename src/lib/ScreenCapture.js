@@ -7,18 +7,17 @@ export default class{
 
   constructor(){
     this.datetime = new Date()
-    const now = moment(this.datetime).format('YYYYMMDD_HHmmss')
-    this.directory = path.join(config.logDirectory, now)
+    this.directory = moment(this.datetime).format('YYYYMMDD_HHmmss')
   }
 
   async take(url){
     const page = await this._getPage()
     const status = await page.open(url)
     const title = await page.property('title')
-    const filename = title + '.png'
-    const filePath = path.join(this.directory, filename)
+    const name = title + '.png'
+    const filePath = path.join(config.logDirectory, this.directory, name)
     await page.render(filePath)
-    return {status, filePath}
+    return {status, name}
   }
 
   async _getInstance(){

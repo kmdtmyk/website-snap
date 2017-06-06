@@ -74,7 +74,7 @@ export default{
     async take(){
       const screenCapture = new ScreenCapture()
       const pages = this.snap.pages
-      const filePaths = []
+      const files = []
       this.captureLogs = []
       for(let i = 0; i < pages.length; i++){
         const {url} = pages[i]
@@ -82,13 +82,13 @@ export default{
           status: 'wait',
           url,
         })
-        const {status, filePath} = await screenCapture.take(url)
+        const {status, name} = await screenCapture.take(url)
         this.captureLogs.pop()
         this.captureLogs.push({
           status,
           url,
         })
-        filePaths.push(filePath)
+        files.push({name})
       }
       const datetime = screenCapture.datetime
       const directory = screenCapture.directory
@@ -97,7 +97,7 @@ export default{
         snapId: _id,
         datetime,
         directory,
-        filePaths,
+        files,
       }
       await SnapLog.insert(log)
     }

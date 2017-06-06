@@ -12,7 +12,7 @@
             @click='selectLog(index)'>
             {{log.datetime | datetime}}
             <div class='ui label'>
-              {{log.filePaths.length}}
+              {{log.files.length}}
             </div>
           </a>
         </div>
@@ -21,9 +21,9 @@
       <div class='eleven wide column'>
         <div class='ui segment log-detail'>
           <img
-           v-for='(filePath, index) in selectedLog.filePaths'
+           v-for='(files, index) in selectedLog.files'
            :key='index'
-           :src='filePath'
+           :src='path.join(logDirectory, files.name)'
            width=100
            height=100>
         </div>
@@ -37,6 +37,8 @@
 <script>
 import Snap from 'models/Snap'
 import SnapLog from 'models/SnapLog'
+import path from 'path'
+import config from 'config'
 
 export default{
   data(){
@@ -52,6 +54,12 @@ export default{
         return {}
       }
       return this.snapLogs[this.selectedIndex]
+    },
+    logDirectory(){
+      return path.join(config.logDirectory, this.selectedLog.directory)
+    },
+    path(){
+      return path
     }
   },
   async beforeRouteEnter(route, redirect, next){
