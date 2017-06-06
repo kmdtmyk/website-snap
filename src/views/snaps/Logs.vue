@@ -20,12 +20,12 @@
 
       <div class='eleven wide column'>
         <div class='ui segment log-detail'>
-          <img
-           v-for='(files, index) in selectedLog.files'
-           :key='index'
-           :src='path.join(logDirectory, files.name)'
-           width=100
-           height=100>
+          <div v-for='(file, index) in selectedLog.files' :key='index'>
+            <img :src='path.join(logDirectory, file.name)' width=100 height=100>
+             <div class='file-name'>
+               {{file.name}}
+             </div>
+           </div>
         </div>
         <button-tag @click='remove(selectedIndex)'>remove</button-tag>
       </div>
@@ -66,6 +66,7 @@ export default{
     const _id = route.params.id
     const snap = await Snap.findOne({_id})
     const snapLogs = await SnapLog.find({snapId: _id})
+    console.log(snapLogs)
     next((vm) => {
       vm.snap = snap
       vm.snapLogs = snapLogs
@@ -97,5 +98,10 @@ export default{
 
 .log-detail{
   height: 80vh;
+  display: flex;
+}
+
+.log-detail > div{
+  margin: 5px;
 }
 </style>
