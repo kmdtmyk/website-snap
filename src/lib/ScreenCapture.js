@@ -1,5 +1,6 @@
 import path from 'path'
 import moment from 'moment'
+import config from 'config'
 const phantom = global.require('phantom')
 
 export default class{
@@ -7,7 +8,7 @@ export default class{
   constructor(){
     this.datetime = new Date()
     const now = moment(this.datetime).format('YYYYMMDD_HHmmss')
-    this.directory = path.join('screenshot', now)
+    this.directory = path.join(config.logDirectory, now)
   }
 
   async take(url){
