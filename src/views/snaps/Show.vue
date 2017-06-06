@@ -1,24 +1,9 @@
 <template>
   <div>
     <h1>{{snap.name}}</h1>
-    <table-tag class='striped'>
-      <thead>
-        <tr>
-          <th>name</th>
-          <th>url</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for='(snap, index) in snap.pages' :key='index'>
-          <td>
-            {{snap.name}}
-          </td>
-          <td>
-            {{snap.url}}
-          </td>
-        </tr>
-      </tbody>
-    </table-tag>
+
+    <page-list v-model='snap.pages'></page-list>
+
     <div>
       <button-tag @click='run' :disabled='running'>
         Run
@@ -38,10 +23,12 @@
 import Snap from 'models/Snap'
 import SnapHistory from 'models/SnapHistory'
 import ScreenCapture from 'lib/ScreenCapture'
+import PageList from './PageList'
 import SnapHistoryShow from './SnapHistoryShow'
 
 export default {
   components: {
+    PageList,
     SnapHistoryShow,
   },
   data(){
