@@ -36,7 +36,7 @@
 
 <script>
 import Snap from 'models/Snap'
-import SnapLog from 'models/SnapLog'
+import SnapHistory from 'models/SnapHistory'
 import path from 'path'
 import config from 'config'
 
@@ -65,8 +65,7 @@ export default{
   async beforeRouteEnter(route, redirect, next){
     const _id = route.params.id
     const snap = await Snap.findOne({_id})
-    const snapLogs = await SnapLog.find({snapId: _id})
-    console.log(snapLogs)
+    const snapLogs = await SnapHistory.find({snapId: _id})
     next((vm) => {
       vm.snap = snap
       vm.snapLogs = snapLogs
@@ -78,7 +77,7 @@ export default{
     },
     async remove(index){
       const _id = this.selectedLog._id
-      await SnapLog.remove({_id})
+      await SnapHistory.remove({_id})
       this.snapLogs = this.snapLogs.filter((snapLog) => {
         return snapLog._id !== _id
       })

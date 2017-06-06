@@ -14,7 +14,7 @@
           <td>
             <link-tag :to='`/snaps/${snap._id}`'>show</link-tag>
             <link-tag :to='`/snaps/${snap._id}/edit`'>edit</link-tag>
-            <link-tag :to='`/snaps/${snap._id}/logs`'>logs</link-tag>
+            <link-tag :to='`/snaps/${snap._id}/histories`'>histories</link-tag>
             <a href='javascript:void(0)' @click='remove(index)'>delete</a>
           </td>
         </tr>

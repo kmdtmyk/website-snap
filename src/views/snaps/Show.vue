@@ -44,7 +44,7 @@
 
 <script>
 import Snap from 'models/Snap'
-import SnapLog from 'models/SnapLog'
+import SnapHistory from 'models/SnapHistory'
 import ScreenCapture from 'lib/ScreenCapture'
 
 export default{
@@ -82,7 +82,7 @@ export default{
           status: 'wait',
           url,
         })
-        const {status, name} = await screenCapture.take(url)
+        const {status, success, name} = await screenCapture.take(url)
         this.captureLogs.pop()
         this.captureLogs.push({
           status,
@@ -99,7 +99,7 @@ export default{
         directory,
         files,
       }
-      await SnapLog.insert(log)
+      await SnapHistory.insert(log)
     }
   },
 }
@@ -117,5 +117,9 @@ export default{
 
 .wait{
   color: blue;
+}
+
+.fail{
+  color: red;
 }
 </style>

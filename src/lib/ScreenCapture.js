@@ -13,11 +13,15 @@ export default class{
   async take(url){
     const page = await this._getPage()
     const status = await page.open(url)
+    const success = status === 'success'
+    if(success === false){
+      return {status, success}
+    }
     const title = await page.property('title')
     const name = title + '.png'
     const filePath = path.join(config.logDirectory, this.directory, name)
     await page.render(filePath)
-    return {status, name}
+    return {status, success, name}
   }
 
   async _getInstance(){

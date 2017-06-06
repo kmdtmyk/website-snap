@@ -3,7 +3,7 @@ import Index from './Index'
 import New from './New'
 import Show from './Show'
 import Edit from './Edit'
-import Logs from './Logs'
+import Histories from './Histories'
 
 export default{
   path: '/snaps',
@@ -39,10 +39,10 @@ export default{
       },
     },
     {
-      path: ':id/logs',
-      component: Logs,
+      path: ':id/histories',
+      component: Histories,
       meta: {
-        breadcrumb: 'logs',
+        breadcrumb: 'histories',
       },
     },
   ],

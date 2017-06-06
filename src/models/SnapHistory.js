@@ -1,7 +1,7 @@
 import Datastore from 'nedb'
 
 const db = new Datastore({
-  filename: 'SnapLog.db',
+  filename: 'SnapHistory.db',
   autoload: true,
   onload(){
   },
