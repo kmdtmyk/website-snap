@@ -25,15 +25,7 @@
       </button-tag>
     </div>
 
-    <div class='ui segment capture-log'>
-      <div v-for='(log, index) in snapHistory.logs' :key='index'>
-        <span :class='log.status'>[{{log.status}}]</span>
-        <span>{{log.url}}</span>
-      </div>
-      <div v-if='snapHistory.end'>
-        finished.
-      </div>
-    </div>
+    <snap-history-show v-model='snapHistory'/>
 
     <div>
       <router-link :to='`/snaps/${snap._id}/edit`'>edit</router-link>
@@ -46,8 +38,12 @@
 import Snap from 'models/Snap'
 import SnapHistory from 'models/SnapHistory'
 import ScreenCapture from 'lib/ScreenCapture'
+import SnapHistoryShow from './SnapHistoryShow'
 
-export default{
+export default {
+  components: {
+    SnapHistoryShow,
+  },
   data(){
     return {
       snap: {},
