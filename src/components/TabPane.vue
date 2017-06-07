@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class='tab-pane'>
     <slot></slot>
   </div>
 </template>
@@ -15,4 +15,7 @@ export default {
 </script>
 
 <style scoped>
+.tab-pane{
+  margin: 1em 0;
+}
 </style>
