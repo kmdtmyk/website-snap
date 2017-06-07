@@ -12,6 +12,10 @@ import LinkTag from './LinkTag'
 // import RadioButton from './RadioButton'
 // import StickyTable from './StickyTable'
 import SubmitButton from './SubmitButton'
+import TabPane from './TabPane'
+import TabLabel from './TabLabel'
+import TabLabels from './TabLabels'
+import TabItem from './TabItem'
 import TableTag from './TableTag'
 import TextField from './TextField'
 
@@ -30,6 +34,10 @@ export default{
   // RadioButton,
   // StickyTable,
   SubmitButton,
+  TabPane,
+  TabLabel,
+  TabLabels,
+  TabItem,
   TableTag,
   TextField,
 }
