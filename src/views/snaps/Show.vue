@@ -15,7 +15,7 @@
 
     <router-view></router-view>
 
-    <div class='ui divider'></div>
+    <divider-tag/>
 
     <div>
       <router-link :to='`/snaps/${snap._id}/edit`'>edit</router-link>
