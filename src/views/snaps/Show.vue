@@ -16,10 +16,14 @@
         <tab-label data-tab='result'>result</tab-label>
       </tab-labels>
       <tab-item data-tab='log'>
-        <snap-history-logs v-model='snapHistory'/>
+        <div class='ui segment detail'>
+          <snap-history-logs v-model='snapHistory'/>
+        </div>
       </tab-item>
       <tab-item data-tab='result'>
-        <snap-history-files v-model='snapHistory'/>
+        <div class='ui segment detail'>
+          <snap-history-files v-model='snapHistory'/>
+        </div>
       </tab-item>
     </tab-pane>
 
@@ -101,7 +105,7 @@ export default {
 </script>
 
 <style scoped>
-.capture-log{
+.detail{
   height: 50vh;
   overflow-y: scroll;
 }

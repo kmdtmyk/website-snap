@@ -1,5 +1,5 @@
 <template>
-  <div class='ui segment'>
+  <div>
     <div v-for='(log, index) in snapHistory.logs' :key='index'>
       <span :class='log.status'>[{{log.status}}]</span>
       <span>{{log.url}}</span>
@@ -22,11 +22,6 @@ export default{
 </script>
 
 <style scoped>
-.ui.segment{
-  height: 50vh;
-  overflow-y: scroll;
-}
-
 .success{
   color: green;
 }
