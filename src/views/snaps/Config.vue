@@ -7,7 +7,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for='(page, index) in pages' :key='index'>
+      <tr v-for='(page, index) in snap.pages' :key='index'>
         <td>
           {{page.name}}
         </td>
@@ -20,13 +20,21 @@
 </template>
 
 <script>
-export default{
-  model: {
-    prop: 'pages',
+import Snap from 'models/Snap'
+
+export default {
+  data(){
+    return {
+      snap: {},
+    }
   },
-  props: [
-    'pages'
-  ],
+  async beforeRouteEnter(route, redirect, next){
+    const _id = route.params.id
+    const snap = await Snap.findOne({_id})
+    next((vm) => {
+      vm.snap = snap
+    })
+  },
 }
 </script>
 

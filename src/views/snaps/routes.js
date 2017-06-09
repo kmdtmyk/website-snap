@@ -3,7 +3,9 @@ import Index from './Index'
 import New from './New'
 import Show from './Show'
 import Edit from './Edit'
-import Histories from './Histories'
+import Config from './Config'
+import Run from './Run'
+import History from './History'
 
 export default{
   path: '/snaps',
@@ -30,19 +32,26 @@ export default{
       meta: {
         breadcrumb: 'show',
       },
+      children: [
+        {
+          path: '/',
+          component: Config,
+        },
+        {
+          path: 'run',
+          component: Run,
+        },
+        {
+          path: 'history',
+          component: History,
+        },
+      ],
     },
     {
       path: ':id/edit',
       component: Edit,
       meta: {
         breadcrumb: 'edit',
-      },
-    },
-    {
-      path: ':id/histories',
-      component: Histories,
-      meta: {
-        breadcrumb: 'histories',
       },
     },
   ],

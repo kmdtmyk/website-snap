@@ -1,36 +1,34 @@
 <template>
-  <div>
-    <h1>{{snap.name}}</h1>
-    <div class='ui grid'>
-      <div class='five wide column'>
-        <div class='ui vertical menu'>
-          <a
-            class='item'
-            :class='{active: index === selectedIndex}'
-            v-for='(snapHistory, index) in snapHistories'
-            :key='index'
-            @click='selectLog(index)'>
-            {{snapHistory.start | datetime}}
-            <div class='ui label'>
-              {{snapHistory.files.length}}
-            </div>
-          </a>
-        </div>
-      </div>
+  <div class='ui grid'>
 
-      <div class='eleven wide column'>
-        <div class='ui segment log-detail'>
-          <div v-for='(file, index) in selectedLog.files' :key='index'>
-            <img :src='path.join(logDirectory, file.name)' width=100 height=100>
-             <div class='file-name'>
-               {{file.name}}
-             </div>
-           </div>
-        </div>
-        <button-tag @click='remove(selectedIndex)'>remove</button-tag>
+    <div class='five wide column'>
+      <div class='ui vertical menu'>
+        <a
+          class='item'
+          :class='{active: index === selectedIndex}'
+          v-for='(snapHistory, index) in snapHistories'
+          :key='index'
+          @click='selectLog(index)'>
+          {{snapHistory.start | datetime}}
+          <div class='ui label'>
+            {{snapHistory.files.length}}
+          </div>
+        </a>
       </div>
-
     </div>
+
+    <div class='eleven wide column'>
+      <div class='ui segment log-detail'>
+        <div v-for='(file, index) in selectedLog.files' :key='index'>
+          <img :src='path.join(logDirectory, file.name)' width=100 height=100>
+           <div class='file-name'>
+             {{file.name}}
+           </div>
+         </div>
+      </div>
+      <button-tag @click='remove(selectedIndex)'>remove</button-tag>
+    </div>
+
   </div>
 </template>
 
@@ -96,7 +94,7 @@ export default{
 }
 
 .log-detail{
-  height: 80vh;
+  height: 70vh;
   display: flex;
 }
 
