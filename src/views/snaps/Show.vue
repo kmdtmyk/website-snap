@@ -16,13 +16,12 @@
         <tab-label data-tab='result'>result</tab-label>
       </tab-labels>
       <tab-item data-tab='log'>
-        <snap-history-show v-model='snapHistory'/>
+        <snap-history-logs v-model='snapHistory'/>
       </tab-item>
       <tab-item data-tab='result'>
-        <file-list v-model='snapHistory'/>
+        <snap-history-files v-model='snapHistory'/>
       </tab-item>
     </tab-pane>
-
 
     <div>
       <router-link :to='`/snaps/${snap._id}/edit`'>edit</router-link>
@@ -36,14 +35,14 @@ import Snap from 'models/Snap'
 import SnapHistory from 'models/SnapHistory'
 import ScreenCapture from 'lib/ScreenCapture'
 import PageList from './PageList'
-import FileList from './FileList'
-import SnapHistoryShow from './SnapHistoryShow'
+import SnapHistoryLogs from './SnapHistory/Logs'
+import SnapHistoryFiles from './SnapHistory/Files'
 
 export default {
   components: {
     PageList,
-    FileList,
-    SnapHistoryShow,
+    SnapHistoryLogs,
+    SnapHistoryFiles,
   },
   data(){
     return {
