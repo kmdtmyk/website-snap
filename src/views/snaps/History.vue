@@ -19,12 +19,7 @@
 
     <div class='eleven wide column'>
       <div class='ui segment log-detail'>
-        <div v-for='(file, index) in selectedLog.files' :key='index'>
-          <img :src='path.join(logDirectory, file.name)' width=100 height=100>
-           <div class='file-name'>
-             {{file.name}}
-           </div>
-         </div>
+         <snap-history-files v-model='selectedSnapHistory'/>
       </div>
       <button-tag @click='remove(selectedIndex)'>remove</button-tag>
     </div>
@@ -37,8 +32,12 @@ import Snap from 'models/Snap'
 import SnapHistory from 'models/SnapHistory'
 import path from 'path'
 import config from 'config'
+import SnapHistoryFiles from './SnapHistory/Files'
 
-export default{
+export default {
+  components: {
+    SnapHistoryFiles,
+  },
   data(){
     return {
       snap: {},
@@ -47,14 +46,14 @@ export default{
     }
   },
   computed: {
-    selectedLog(){
+    selectedSnapHistory(){
       if(!this.snapHistories[this.selectedIndex]){
         return {}
       }
       return this.snapHistories[this.selectedIndex]
     },
     logDirectory(){
-      return path.join(config.logDirectory, this.selectedLog.directory)
+      return path.join(config.logDirectory, this.selectedSnapHistory.directory)
     },
     path(){
       return path
@@ -74,7 +73,7 @@ export default{
       this.selectedIndex = index
     },
     async remove(index){
-      const _id = this.selectedLog._id
+      const _id = this.selectedSnapHistory._id
       await SnapHistory.remove({_id})
       this.snapHistories = this.snapHistories.filter((snapLog) => {
         return snapLog._id !== _id
@@ -95,10 +94,5 @@ export default{
 
 .log-detail{
   height: 70vh;
-  display: flex;
-}
-
-.log-detail > div{
-  margin: 5px;
 }
 </style>
