@@ -1,21 +1,6 @@
 <template>
   <div>
-    <tab-pane>
-      <tab-labels>
-        <tab-label data-tab='log'>log</tab-label>
-        <tab-label data-tab='result'>result</tab-label>
-      </tab-labels>
-      <tab-item data-tab='log'>
-        <div class='ui segment detail'>
-          <snap-history-logs v-model='snapHistory'/>
-        </div>
-      </tab-item>
-      <tab-item data-tab='result'>
-        <div class='ui segment detail'>
-          <snap-history-files v-model='snapHistory'/>
-        </div>
-      </tab-item>
-    </tab-pane>
+    <snap-history-view v-model='snapHistory'/>
     <div>
       <button-tag @click='run' :disabled='running'>
         Run
@@ -28,13 +13,11 @@
 import Snap from 'models/Snap'
 import SnapHistory from 'models/SnapHistory'
 import ScreenCapture from 'lib/ScreenCapture'
-import SnapHistoryLogs from './SnapHistory/Logs'
-import SnapHistoryFiles from './SnapHistory/Files'
+import SnapHistoryView from './SnapHistory'
 
 export default {
   components: {
-    SnapHistoryLogs,
-    SnapHistoryFiles,
+    SnapHistoryView,
   },
   data(){
     return {
@@ -93,8 +76,4 @@ export default {
 </script>
 
 <style scoped>
-.detail{
-  height: 50vh;
-  overflow-y: scroll;
-}
 </style>

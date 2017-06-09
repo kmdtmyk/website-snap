@@ -18,9 +18,7 @@
     </div>
 
     <div class='eleven wide column'>
-      <div class='ui segment log-detail'>
-         <snap-history-files v-model='selectedSnapHistory'/>
-      </div>
+      <snap-history-view v-model='selectedSnapHistory'/>
       <button-tag @click='remove(selectedIndex)'>remove</button-tag>
     </div>
 
@@ -32,11 +30,11 @@ import Snap from 'models/Snap'
 import SnapHistory from 'models/SnapHistory'
 import path from 'path'
 import config from 'config'
-import SnapHistoryFiles from './SnapHistory/Files'
+import SnapHistoryView from './SnapHistory'
 
 export default {
   components: {
-    SnapHistoryFiles,
+    SnapHistoryView,
   },
   data(){
     return {
@@ -90,9 +88,5 @@ export default {
 
 .ui.menu .item{
   padding: 8px;
-}
-
-.log-detail{
-  height: 70vh;
 }
 </style>
