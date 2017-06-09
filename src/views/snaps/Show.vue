@@ -10,7 +10,19 @@
       </button-tag>
     </div>
 
-    <snap-history-show v-model='snapHistory'/>
+    <tab-pane>
+      <tab-labels>
+        <tab-label data-tab='log'>log</tab-label>
+        <tab-label data-tab='result'>result</tab-label>
+      </tab-labels>
+      <tab-item data-tab='log'>
+        <snap-history-show v-model='snapHistory'/>
+      </tab-item>
+      <tab-item data-tab='result'>
+        <file-list v-model='snapHistory'/>
+      </tab-item>
+    </tab-pane>
+
 
     <div>
       <router-link :to='`/snaps/${snap._id}/edit`'>edit</router-link>
@@ -24,11 +36,13 @@ import Snap from 'models/Snap'
 import SnapHistory from 'models/SnapHistory'
 import ScreenCapture from 'lib/ScreenCapture'
 import PageList from './PageList'
+import FileList from './FileList'
 import SnapHistoryShow from './SnapHistoryShow'
 
 export default {
   components: {
     PageList,
+    FileList,
     SnapHistoryShow,
   },
   data(){
@@ -64,6 +78,7 @@ export default {
       const screenCapture = new ScreenCapture()
       const {snapHistory} = this
       const {logs, files} = snapHistory
+      snapHistory.directory = screenCapture.directory
       for(let i = 0; i < pages.length; i++){
         const {url} = pages[i]
         logs.push({
@@ -80,7 +95,6 @@ export default {
           files.push({name})
         }
       }
-      snapHistory.directory = screenCapture.directory
       await SnapHistory.insert(snapHistory)
     }
   },
