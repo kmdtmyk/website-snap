@@ -7,7 +7,7 @@
     <page-list v-model='snap.pages'></page-list>
     <div>
       <submit-button>Register</submit-button>
-      <button-link :to='{name: "snaps"}'>Cancel</button-link>
+      <button-tag @click='cancel'>Cancel</button-tag>
     </div>
   </form-tag>
 </template>
@@ -27,6 +27,9 @@ export default{
     submit(e){
       this.$emit('submit', e)
     },
+    cancel(e){
+      this.$router.go(-1)
+    }
   },
 }
 </script>
