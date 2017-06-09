@@ -64,6 +64,7 @@ export default {
       snapHistory.start = new Date()
       await this.take(this.snap.pages)
       snapHistory.end = new Date()
+      await SnapHistory.insert(snapHistory)
     },
     async take(pages){
       const screenCapture = new ScreenCapture()
@@ -86,7 +87,6 @@ export default {
           files.push({name})
         }
       }
-      await SnapHistory.insert(snapHistory)
     }
   },
 }
