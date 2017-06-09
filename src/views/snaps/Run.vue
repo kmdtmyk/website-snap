@@ -97,16 +97,4 @@ export default {
   height: 50vh;
   overflow-y: scroll;
 }
-
-.success{
-  color: green;
-}
-
-.wait{
-  color: blue;
-}
-
-.fail{
-  color: red;
-}
 </style>
