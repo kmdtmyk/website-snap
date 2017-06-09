@@ -6,25 +6,25 @@
     </tab-labels>
     <tab-item data-tab='log'>
       <div class='ui segment detail'>
-        <snap-history-logs v-model='snapHistory'/>
+        <logs v-model='snapHistory'/>
       </div>
     </tab-item>
     <tab-item data-tab='result'>
       <div class='ui segment detail'>
-        <snap-history-files v-model='snapHistory'/>
+        <files v-model='snapHistory'/>
       </div>
     </tab-item>
   </tab-pane>
 </template>
 
 <script>
-import SnapHistoryLogs from './Logs'
-import SnapHistoryFiles from './Files'
+import Logs from './Logs'
+import Files from './Files'
 
 export default {
   components: {
-    SnapHistoryLogs,
-    SnapHistoryFiles,
+    Logs,
+    Files,
   },
   model: {
     prop: 'snapHistory',
